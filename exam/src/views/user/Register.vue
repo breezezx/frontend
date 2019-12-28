@@ -14,8 +14,6 @@
       <a-popover placement="rightTop" trigger="click" :visible="state.passwordLevelChecked">
         <template slot="content">
           <div :style="{ width: '240px' }">
-            <div :class="['user-register', passwordLevelClass]">强度：<span>{{ passwordLevelName }}</span></div>
-            <a-progress :percent="state.percent" :showInfo="false" :strokeColor=" passwordLevelColor "/>
             <div style="margin-top: 10px;">
               <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
             </div>
@@ -28,7 +26,7 @@
             @click="handlePasswordInputClick"
             autocomplete="false"
             placeholder="至少6位密码，区分大小写"
-            v-decorator="['password', {rules: [{ required: true, message: '至少6位密码，区分大小写'}, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}]"
+            v-decorator="['password', {rules: [{ required: true, message: '至少6位密码，区分大小写'}], validateTrigger: ['change', 'blur']}]"
           ></a-input>
         </a-form-item>
       </a-popover>
@@ -55,29 +53,6 @@
           </a-select>
         </a-input>
       </a-form-item>
-      <a-row :gutter="16">
-        <a-col class="gutter-row" :span="16">
-          <a-form-item>
-            <a-input
-              size="large"
-              type="text"
-              placeholder="验证码"
-              v-decorator="['captcha', {rules: [{ required: true, message: '请输入验证码' }], validateTrigger: 'blur'}]"
-            >
-              <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-            </a-input>
-          </a-form-item>
-        </a-col>
-        <a-col class="gutter-row" :span="8">
-          <a-button
-            class="getCaptcha"
-            size="large"
-            :disabled="state.smsSendBtn"
-            @click.stop.prevent="getCaptcha"
-            v-text="!state.smsSendBtn && '获取验证码'||(state.time+' s')"></a-button>
-        </a-col>
-      </a-row>
-
       <a-form-item>
         <a-button
           size="large"

@@ -49,7 +49,7 @@
 
       <!-- layout footer -->
       <a-layout-footer>
-        <global-footer />
+
       </a-layout-footer>
 
       <!-- Setting Drawer (show in development mode) -->
